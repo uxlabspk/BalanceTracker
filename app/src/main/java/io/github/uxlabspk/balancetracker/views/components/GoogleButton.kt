@@ -47,7 +47,11 @@ fun GoogleButton(text: String, modifier: Modifier, onClick: () -> Unit) {
         border = BorderStroke(1.dp, BorderColor)
     ) {
         Row {
-            Image(painter = painterResource(id = R.drawable.ic_google), contentDescription = null, modifier = Modifier.padding(end = 10.dp).width(20.dp))
+            Image(
+                painter = painterResource(id = R.drawable.ic_google),
+                contentDescription = null,
+                modifier = Modifier.padding(end = 10.dp).width(20.dp)
+            )
             Text(
                 text,
                 fontFamily = Poppins_Font_Family,
@@ -55,19 +59,6 @@ fun GoogleButton(text: String, modifier: Modifier, onClick: () -> Unit) {
                 fontSize = 14.sp
             )
         }
-    }
-
-}
-
-@Composable
-@Preview(showBackground = true, widthDp = 300, heightDp = 700)
-fun PreviewGoogleButton() {
-    Column(
-
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        GoogleButton("sdf", modifier = Modifier) {}
     }
 
 }
