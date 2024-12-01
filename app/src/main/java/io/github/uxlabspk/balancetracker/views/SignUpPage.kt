@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,36 +34,33 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.uxlabspk.balancetracker.R
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
-import io.github.uxlabspk.balancetracker.views.components.GoogleButton
 import io.github.uxlabspk.balancetracker.views.components.PrimaryButton
 import io.github.uxlabspk.balancetracker.views.components.TopBar
 
-
 @Composable
-fun SignInPage() {
+fun SignUpPage() {
     // states
-    var textState by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
 
+    // variables
     val icon =
         if (passwordVisibility) painterResource(id = R.drawable.ic_visible)
         else painterResource(id = R.drawable.ic_invisible)
 
-    // variables
+    var isNameError by remember { mutableStateOf(false) }
     var isEmailError by remember { mutableStateOf(false) }
     var isPasswordError by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -72,24 +70,23 @@ fun SignInPage() {
             .background(MaterialTheme.colorScheme.background)
             .padding(top = 20.dp)
     ) {
-        TopBar(text = "Sign In", modifier = Modifier) {}
+        TopBar(text = "Sign up", modifier = Modifier.height(54.dp)) {}
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 20.dp)
-            ,
+                .padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 modifier = Modifier.width(180.dp),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary),
-                painter = painterResource(id = R.drawable.ic_signin),
+                painter = painterResource(id = R.drawable.ic_signup),
                 contentDescription = null
             )
-
+            // Hi, there 👋
             Text(
-                text = "Welcome back \uD83D\uDC4B",
+                text = "Hi, there \uD83D\uDC4B",
                 fontFamily = Poppins_Font_Family,
                 fontWeight = FontWeight.Normal,
                 fontSize = 32.sp,
@@ -100,20 +97,16 @@ fun SignInPage() {
             )
 
             TextField(
-                value = textState,
-                onValueChange = { newText ->
-                    textState = newText
-//                    isValidEmail(newText)
-                },
+                value = username,
+                onValueChange = { username = it },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 20.dp, bottom = 16.dp),
-                label = { Text("Enter your email...", color = MaterialTheme.colorScheme.onPrimary) },
-                isError = isEmailError,
+                label = { Text("Enter your name...", color = MaterialTheme.colorScheme.onPrimary) },
+                isError = isNameError,
                 leadingIcon = {
-                    Icon(imageVector = Icons.Default.Email, contentDescription = "Email Icon")
+                    Icon(imageVector = Icons.Default.AccountBox, contentDescription = "Email Icon")
                 },
-
                 colors = TextFieldDefaults.colors(
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
@@ -131,11 +124,49 @@ fun SignInPage() {
                 shape = RoundedCornerShape(5.dp),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Email,
+                    keyboardType = KeyboardType.Text,
                     imeAction = ImeAction.Next
                 )
             )
 
+
+            TextField(
+                value = email,
+                onValueChange = { email = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp),
+                label = {
+                    Text(
+                        "Enter your email...",
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                },
+                isError = isEmailError,
+                leadingIcon = {
+                    Icon(imageVector = Icons.Default.Email, contentDescription = "Email Icon")
+                },
+                colors = TextFieldDefaults.colors(
+                    unfocusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedLabelColor = Color.DarkGray,
+                    focusedLabelColor = Color.DarkGray,
+                    focusedLeadingIconColor = MaterialTheme.colorScheme.onPrimary,
+                    unfocusedLeadingIconColor = MaterialTheme.colorScheme.onPrimary,
+                    focusedTextColor = MaterialTheme.colorScheme.onPrimary,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onPrimary,
+                    disabledIndicatorColor = Color.Transparent,
+                    focusedContainerColor = MaterialTheme.colorScheme.surface,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                    cursorColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                ),
+                shape = RoundedCornerShape(5.dp),
+                singleLine = true,
+            )
 
             TextField(
                 modifier = Modifier
@@ -187,22 +218,12 @@ fun SignInPage() {
                 else PasswordVisualTransformation()
             )
 
-            TextButton(onClick = { /*TODO*/ }) {
-                Text(
-                    "Forget Password?",
-                    fontFamily = Poppins_Font_Family,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    textAlign = TextAlign.End,
-                    modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
-                )
-            }
-
-            PrimaryButton(text = "Login", modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-                .height(46.dp)
+            PrimaryButton(
+                text = "Sign up",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
+                    .height(46.dp)
             ) {}
 
             Row(
@@ -213,44 +234,30 @@ fun SignInPage() {
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    "Don't have an account? ",
+                    "Already have an account? ",
                     fontFamily = Poppins_Font_Family,
                     fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
-                    color = MaterialTheme.colorScheme.onPrimary
+                    fontSize = 16.sp
                 )
                 TextButton(
-                    onClick = {},
+                    onClick = {}
                 ) {
                     Text(
-                        "Create new",
-                        textDecoration = TextDecoration.Underline,
+                        "Sign In",
                         fontFamily = Poppins_Font_Family,
                         fontWeight = FontWeight.Normal,
-                        fontSize = 14.sp,
+                        fontSize = 16.sp,
                         color = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             }
-
-            Text(
-                "OR",
-                modifier = Modifier.padding(vertical = 24.dp),
-                fontFamily = Poppins_Font_Family,
-                fontWeight = FontWeight.Medium,
-                fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
-
-            GoogleButton(text = "Continue with Google", modifier = Modifier.fillMaxWidth().height(46.dp)) {}
 
         }
     }
 
 }
 
-@Composable
-@Preview(showBackground = true, widthDp = 300, heightDp = 800)
-fun SignInPagePreview() {
-    SignInPage()
-}
+
+
+
+

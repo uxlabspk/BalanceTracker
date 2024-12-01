@@ -1,8 +1,13 @@
 package io.github.uxlabspk.balancetracker.views.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
@@ -25,28 +30,31 @@ import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
 @Composable
 fun TopBar(text: String, modifier: Modifier, onClick: () -> Unit) {
     Surface(
-        modifier = modifier.fillMaxWidth(),
+        Modifier
+            .fillMaxWidth(),
         shadowElevation = 3.dp
     ) {
         Row(
-            modifier.padding(horizontal = 0.dp).background(MaterialTheme.colorScheme.background),
+            modifier
+                .height(56.dp)
+                .background(MaterialTheme.colorScheme.background),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(
-                onClick = onClick
-            ) {
-                Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = null)
+            IconButton(onClick = onClick) {
+                Icon(
+                    Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                    contentDescription = "go back icon"
+                )
             }
             Text(
                 text,
                 fontFamily = Poppins_Font_Family,
-                fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.onPrimary,
-                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = 40.dp)
+                    .fillMaxWidth(),
+                color = MaterialTheme.colorScheme.onPrimary
             )
         }
     }

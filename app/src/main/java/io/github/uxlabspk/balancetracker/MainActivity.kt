@@ -6,6 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import io.github.uxlabspk.balancetracker.ui.theme.BalanceTrackerTheme
 import io.github.uxlabspk.balancetracker.views.IntroductionPage
+import io.github.uxlabspk.balancetracker.views.ResetPage
+import io.github.uxlabspk.balancetracker.views.SignInPage
+import io.github.uxlabspk.balancetracker.views.SignUpPage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BalanceTrackerTheme {
-                IntroductionPage()
+                ResetPage()
             }
         }
     }
