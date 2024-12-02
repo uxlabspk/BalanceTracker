@@ -73,6 +73,7 @@ fun TopBar(give: String, get: String, modifier: Modifier = Modifier, onClick: ()
                 Icon(
                     Icons.AutoMirrored.Filled.KeyboardArrowLeft,
                     contentDescription = "go back icon",
+                    
 
                 )
             }
