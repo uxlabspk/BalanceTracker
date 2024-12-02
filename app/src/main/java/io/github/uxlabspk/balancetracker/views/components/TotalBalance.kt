@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,32 +23,35 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.uxlabspk.balancetracker.R
+import io.github.uxlabspk.balancetracker.ui.theme.LightGray
+import io.github.uxlabspk.balancetracker.ui.theme.OffWhiteColor
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
 
 @Composable
-fun TopBar(give: String, get: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun TotalBalance(give: String, get: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Surface(
         modifier = modifier
-
             .fillMaxWidth(),
         shadowElevation = 3.dp,
-        color = Color.Gray,
+        color = LightGray,
         shape = RoundedCornerShape(12.dp)
     ) {
         Row(
             modifier
-                .fillMaxWidth(1f),
+                .fillMaxWidth(1f).padding(22.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
                 modifier = Modifier
-                    .padding(22.dp),
+                    .padding(vertical = 10.dp),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -67,14 +71,13 @@ fun TopBar(give: String, get: String, modifier: Modifier = Modifier, onClick: ()
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Start,
                     color = Color.Black
+
                 )
             }
-            IconButton(onClick = onClick, modifier = Modifier.padding(end = 16.dp)) {
+            IconButton(onClick = onClick) {
                 Icon(
-                    Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                    painter = painterResource(R.drawable.ic_stats),
                     contentDescription = "go back icon",
-
-
 
                 )
             }
@@ -87,6 +90,6 @@ fun TopBar(give: String, get: String, modifier: Modifier = Modifier, onClick: ()
 
 @Composable
 @Preview(showBackground = true, widthDp = 330, heightDp = 230)
-fun PreviewIntroductionPage() {
-    TopBar(give = "ksdl", get = "lkjsd", modifier = Modifier) { }
+fun PreviewTotalBalance() {
+    TotalBalance(give = "ksdl", get = "lkjsd", modifier = Modifier) { }
 }
