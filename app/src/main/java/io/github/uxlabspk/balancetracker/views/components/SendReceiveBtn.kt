@@ -48,6 +48,6 @@ fun SendReceiveBtn(modifier: Modifier = Modifier, onClick: () -> Unit) {
 
 @Composable
 @Preview(showBackground = true, widthDp = 330, heightDp = 230)
-fun PreviewGetGiveBtn() {
+fun PreviewSendReceiveBtn() {
     SendReceiveBtn(modifier = Modifier) { }
 }

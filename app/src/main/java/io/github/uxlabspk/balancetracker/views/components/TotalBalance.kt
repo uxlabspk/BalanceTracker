@@ -58,7 +58,7 @@ fun TotalBalance(give: String, get: String, modifier: Modifier = Modifier, onCli
                 Text(
                     text = give,
                     fontFamily = Poppins_Font_Family,
-                    fontSize = 22.sp,
+                    fontSize = 32.sp,
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Start,
                     color = Color.Black
@@ -70,7 +70,7 @@ fun TotalBalance(give: String, get: String, modifier: Modifier = Modifier, onCli
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Start,
-                    color = Color.Black
+                    color = Color.DarkGray
 
                 )
             }
@@ -91,5 +91,5 @@ fun TotalBalance(give: String, get: String, modifier: Modifier = Modifier, onCli
 @Composable
 @Preview(showBackground = true, widthDp = 330, heightDp = 230)
 fun PreviewTotalBalance() {
-    TotalBalance(give = "ksdl", get = "lkjsd", modifier = Modifier) { }
+    TotalBalance(give = "$25,000", get = "$3000", modifier = Modifier) { }
 }
