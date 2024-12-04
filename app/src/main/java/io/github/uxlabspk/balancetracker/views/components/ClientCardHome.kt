@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,67 +24,88 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.uxlabspk.balancetracker.R
+import io.github.uxlabspk.balancetracker.ui.theme.GrayColor
+import io.github.uxlabspk.balancetracker.ui.theme.GreenColor
 import io.github.uxlabspk.balancetracker.ui.theme.LightGray
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
+import io.github.uxlabspk.balancetracker.ui.theme.RedColor
+import io.github.uxlabspk.balancetracker.ui.theme.WhiteColor
 
 @Composable
-fun ClientCardHome(give: String, get: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun ClientCardHome(name: String, date: String, sendValue: String, receiveValue: String, onClick: () -> Unit) {
     Surface(
-        shadowElevation = 3.dp,
+        color = LightGray,
+        shape = RoundedCornerShape(8.dp),
+        onClick = onClick,
+        modifier = Modifier.padding(bottom = 10.dp)
     ) {
         Row(
-            modifier.padding(10.dp),
+            Modifier.padding(20.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
-                modifier = Modifier
-                    .padding(10.dp),
+                modifier = Modifier,
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = give,
+                    name,
                     fontFamily = Poppins_Font_Family,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Start,
                     color = Color.Black,
                     modifier = Modifier
-                        .padding(vertical = 10.dp)
+                        .padding(bottom = 10.dp)
                 )
 
                 Text(
-                    text = get,
+                    date,
                     fontFamily = Poppins_Font_Family,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Start,
-                    color = Color.Black
+                    color = GrayColor
 
                 )
             }
             Row (
                 modifier = Modifier
-                    .fillMaxWidth(1f)
-                    .padding(horizontal = 10.dp)
-                ,
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.End
             ) {
-                AltButton (text = "1245",
-                    type = "Receive",
-                    modifier = Modifier
-                        .width(80.dp)
-                        .height(35.dp)
+                Surface(
+                    modifier = Modifier.padding(end = 10.dp),
+                    color = RedColor,
+                    shape = RoundedCornerShape(5.dp)
+                ) {
+                    Text(
+                        receiveValue,
+                        fontFamily = Poppins_Font_Family,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Start,
+                        color = WhiteColor,
+                        modifier = Modifier.padding(5.dp),
+                    )
+                }
 
-                ) {}
-                AltButton (text = "2000",
-                    type = "Send",
-                    modifier = Modifier
-                        .width(80.dp)
-                        .height(35.dp)
-                ) {}
+                Surface(
+                    color = GreenColor,
+                    shape = RoundedCornerShape(5.dp)
+                ) {
+                    Text(
+                        sendValue,
+                        fontFamily = Poppins_Font_Family,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Start,
+                        color = WhiteColor,
+                        modifier = Modifier.padding(5.dp),
+                    )
+                }
             }
 
         }
@@ -96,5 +118,5 @@ fun ClientCardHome(give: String, get: String, modifier: Modifier = Modifier, onC
 @Composable
 @Preview(showBackground = true, widthDp = 330, heightDp = 230)
 fun PreviewClientCardHome() {
-    ClientCardHome(give = "Hamza Waheed", get = "Nov 19, 2024", modifier = Modifier) { }
+    ClientCardHome(name = "Hamza Waheed", date = "Nov 19, 2024", receiveValue = "$23", sendValue = "$21") { }
 }

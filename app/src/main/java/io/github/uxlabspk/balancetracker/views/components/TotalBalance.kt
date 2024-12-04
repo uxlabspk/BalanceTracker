@@ -1,5 +1,6 @@
 package io.github.uxlabspk.balancetracker.views.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -30,59 +31,89 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.uxlabspk.balancetracker.R
+import io.github.uxlabspk.balancetracker.ui.theme.BorderColor
 import io.github.uxlabspk.balancetracker.ui.theme.LightGray
 import io.github.uxlabspk.balancetracker.ui.theme.OffWhiteColor
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
 
 @Composable
-fun TotalBalance(give: String, get: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun TotalBalance(give: String, get: String, send: String, receive: String, modifier: Modifier = Modifier, onStatsClick: () -> Unit) {
     Surface(
         modifier = modifier
             .fillMaxWidth(),
-        shadowElevation = 3.dp,
         color = LightGray,
+        border = BorderStroke(1.dp, BorderColor),
         shape = RoundedCornerShape(12.dp)
     ) {
-        Row(
-            modifier
-                .fillMaxWidth(1f).padding(22.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+        Column(
+            Modifier.padding(20.dp)
         ) {
-            Column(
-                modifier = Modifier
-                    .padding(vertical = 10.dp),
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.Center
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = give,
-                    fontFamily = Poppins_Font_Family,
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Medium,
-                    textAlign = TextAlign.Start,
-                    color = Color.Black
-                )
+                Column(
+                    modifier = Modifier,
+//                        .padding(vertical = 10.dp),
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = give,
+                        fontFamily = Poppins_Font_Family,
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Start,
+                        color = Color.Black
+                    )
 
-                Text(
-                    text = get,
-                    fontFamily = Poppins_Font_Family,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    textAlign = TextAlign.Start,
-                    color = Color.DarkGray
+                    Text(
+                        text = get,
+                        fontFamily = Poppins_Font_Family,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Start,
+                        color = Color.DarkGray
 
-                )
+                    )
+                }
+                IconButton(onClick = onStatsClick) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_stats),
+                        contentDescription = "go back icon",
+
+                        )
+                }
             }
-            IconButton(onClick = onClick) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_stats),
-                    contentDescription = "go back icon",
 
-                )
+            Row(
+                modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                AltButton (
+                    receive,
+                    type = "Receive",
+                    modifier = Modifier
+
+                ) {
+
+                }
+
+                AltButton (
+                    send,
+                    type = "Send",
+                    modifier = Modifier
+                ) {
+
+                }
+
             }
         }
-
     }
 }
 
@@ -91,5 +122,5 @@ fun TotalBalance(give: String, get: String, modifier: Modifier = Modifier, onCli
 @Composable
 @Preview(showBackground = true, widthDp = 330, heightDp = 230)
 fun PreviewTotalBalance() {
-    TotalBalance(give = "$25,000", get = "$3000", modifier = Modifier) { }
+    TotalBalance(give = "$25,000", get = "$3000", send = "$30", receive = "$40") {}
 }
