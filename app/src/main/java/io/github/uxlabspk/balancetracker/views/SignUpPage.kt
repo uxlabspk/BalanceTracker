@@ -40,6 +40,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.uxlabspk.balancetracker.R
@@ -257,7 +258,11 @@ fun SignUpPage() {
 
 }
 
-
+@Composable
+@Preview(showBackground = true, widthDp = 360, heightDp = 800)
+fun PreviewSignUpPage() {
+    SignUpPage()
+}
 
 
 
