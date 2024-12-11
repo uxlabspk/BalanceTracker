@@ -67,7 +67,6 @@ fun SignUpPage(
     var isNameError by remember { mutableStateOf(false) }
     var isEmailError by remember { mutableStateOf(false) }
     var isPasswordError by remember { mutableStateOf(false) }
-    val context = LocalContext.current
 
     Column(
         Modifier

@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -49,8 +50,9 @@ fun IntroductionPage(
         Text("Track your balance effortlessly, empowering smarter spending and saving decisions!", textAlign = TextAlign.Center, fontFamily = Poppins_Font_Family, fontWeight = FontWeight.Normal, fontSize = 14.sp, modifier = Modifier.padding(top = 6.dp), color = MaterialTheme.colorScheme.onPrimary)
 
         PrimaryButton(text = "Get Started", modifier = Modifier
+            .fillMaxWidth()
             .padding(top = 100.dp)
-            .width(215.dp)
+            .padding(20.dp)
             .height(46.dp)) { navController.navigate("signin") }
     }
 }

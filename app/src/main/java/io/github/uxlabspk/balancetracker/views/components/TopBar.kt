@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
@@ -43,7 +44,8 @@ fun TopBar(text: String, modifier: Modifier, onClick: () -> Unit) {
             IconButton(onClick = onClick) {
                 Icon(
                     Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                    contentDescription = "go back icon"
+                    contentDescription = "go back icon",
+                    modifier = Modifier.width(40.dp)
                 )
             }
             Text(
@@ -53,18 +55,10 @@ fun TopBar(text: String, modifier: Modifier, onClick: () -> Unit) {
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .padding(end = 60.dp),
                 color = MaterialTheme.colorScheme.onPrimary
             )
         }
-    }
-}
-
-
-@Preview(showBackground = true, widthDp = 300, heightDp = 700)
-@Composable
-fun Preview () {
-    TopBar(text = "sdf", modifier = Modifier) {
-
     }
 }
