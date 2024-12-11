@@ -43,13 +43,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import io.github.uxlabspk.balancetracker.R
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
 import io.github.uxlabspk.balancetracker.views.components.PrimaryButton
 import io.github.uxlabspk.balancetracker.views.components.TopBar
 
 @Composable
-fun SignUpPage() {
+fun SignUpPage(
+    navController: NavController
+) {
     // states
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -71,7 +74,7 @@ fun SignUpPage() {
             .background(MaterialTheme.colorScheme.background)
             .padding(top = 20.dp)
     ) {
-        TopBar(text = "Sign up", modifier = Modifier.height(54.dp)) {}
+        TopBar(text = "Sign up", modifier = Modifier.height(54.dp)) { navController.navigateUp() }
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -225,7 +228,7 @@ fun SignUpPage() {
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
                     .height(46.dp)
-            ) {}
+            ) { navController.navigate("home") }
 
             Row(
                 modifier = Modifier
@@ -241,7 +244,7 @@ fun SignUpPage() {
                     fontSize = 16.sp
                 )
                 TextButton(
-                    onClick = {}
+                    onClick = { navController.navigate("signin") }
                 ) {
                     Text(
                         "Sign In",
@@ -257,12 +260,3 @@ fun SignUpPage() {
     }
 
 }
-
-@Composable
-@Preview(showBackground = true, widthDp = 360, heightDp = 800)
-fun PreviewSignUpPage() {
-    SignUpPage()
-}
-
-
-

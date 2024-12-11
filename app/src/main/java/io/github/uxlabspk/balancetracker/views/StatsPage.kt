@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import io.github.uxlabspk.balancetracker.R
 import io.github.uxlabspk.balancetracker.ui.theme.BorderColor
 import io.github.uxlabspk.balancetracker.ui.theme.GrayColor
@@ -35,7 +36,9 @@ import io.github.uxlabspk.balancetracker.views.components.CurrencyRecordsButtons
 import io.github.uxlabspk.balancetracker.views.components.ProfileActionButton
 
 @Composable
-fun StatsPage() {
+fun StatsPage(
+    navController: NavController
+) {
     Column(
         Modifier
             .background(MaterialTheme.colorScheme.background)
@@ -112,10 +115,4 @@ fun StatsPage() {
         }
 
     }
-}
-
-@Composable
-@Preview(showBackground = true, widthDp = 300, heightDp = 700)
-fun StatsPagePreview() {
-    StatsPage()
 }

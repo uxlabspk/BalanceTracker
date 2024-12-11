@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import io.github.uxlabspk.balancetracker.R
 import io.github.uxlabspk.balancetracker.ui.theme.BorderColor
 import io.github.uxlabspk.balancetracker.ui.theme.GrayColor
@@ -49,7 +50,9 @@ import io.github.uxlabspk.balancetracker.ui.theme.YellowColor
 import io.github.uxlabspk.balancetracker.views.components.ProfileActionButton
 
 @Composable
-fun ProfilePage() {
+fun ProfilePage(
+    navController: NavController
+) {
     var isChecked by remember { mutableStateOf(false) }
 
     Column(
@@ -171,10 +174,4 @@ fun ProfilePage() {
                 .height(48.dp)
         ) {}
     }
-}
-
-@Composable
-@Preview(showBackground = true, widthDp = 330, heightDp = 880)
-fun ProfilePagePreview() {
-    ProfilePage()
 }

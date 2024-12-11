@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import io.github.uxlabspk.balancetracker.ui.theme.GrayColor
 import io.github.uxlabspk.balancetracker.ui.theme.GreenColor
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
@@ -38,7 +39,9 @@ import io.github.uxlabspk.balancetracker.views.components.TotalBalance
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomePage() {
+fun HomePage(
+    navController: NavController
+) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -60,7 +63,7 @@ fun HomePage() {
             .fillMaxSize()
             .padding(20.dp)
     ) {
-        TotalBalance(give = "$25,000", get = "$3000", send = "$30", receive = "$40", modifier = Modifier.padding(top = 10.dp)) {}
+        TotalBalance(give = "$25,000", get = "$3000", send = "$30", receive = "$40", modifier = Modifier.padding(top = 10.dp)) { navController.navigate("stats") }
 
         Row(
             Modifier
@@ -91,7 +94,7 @@ fun HomePage() {
 
         LazyColumn {
             items(15) {
-                ClientCardHome(name = "payment for person", date = "December 19, 2026", sendValue = "$32", receiveValue = "$00") {}
+                ClientCardHome(name = "payment for person", date = "December 19, 2026", sendValue = "$32", receiveValue = "$00") { navController.navigate("stats") }
             }
         }
     }
@@ -138,11 +141,4 @@ fun HomePage() {
 //            }
 //        }
 //    }
-}
-
-
-@Preview (showBackground = true, widthDp = 330, heightDp = 800)
-@Composable
-fun HomePagePreview() {
-    HomePage()
 }

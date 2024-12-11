@@ -44,6 +44,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import io.github.uxlabspk.balancetracker.R
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
 import io.github.uxlabspk.balancetracker.views.components.GoogleButton
@@ -52,15 +54,17 @@ import io.github.uxlabspk.balancetracker.views.components.TopBar
 
 
 @Composable
-fun SignInPage() {
+fun SignInPage(
+    navController: NavController
+) {
     // states
     var textState by remember { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
 
     val icon =
-        if (passwordVisibility) painterResource(id = R.drawable.ic_visible)
-        else painterResource(id = R.drawable.ic_invisible)
+        if (passwordVisibility) painterResource(id = R.drawable.ic_invisible)
+        else painterResource(id = R.drawable.ic_visible)
 
     // variables
     var isEmailError by remember { mutableStateOf(false) }
@@ -72,7 +76,7 @@ fun SignInPage() {
             .background(MaterialTheme.colorScheme.background)
             .padding(top = 20.dp)
     ) {
-        TopBar(text = "Sign In", modifier = Modifier) {}
+        TopBar(text = "Sign In", modifier = Modifier) { navController.navigateUp() }
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -187,7 +191,7 @@ fun SignInPage() {
                 else PasswordVisualTransformation()
             )
 
-            TextButton(onClick = { /*TODO*/ }) {
+            TextButton(onClick = { navController.navigate("reset") }) {
                 Text(
                     "Forget Password?",
                     fontFamily = Poppins_Font_Family,
@@ -203,7 +207,7 @@ fun SignInPage() {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
                 .height(46.dp)
-            ) {}
+            ) { navController.navigate("home") }
 
             Row(
                 modifier = Modifier
@@ -220,7 +224,7 @@ fun SignInPage() {
                     color = MaterialTheme.colorScheme.onPrimary
                 )
                 TextButton(
-                    onClick = {},
+                    onClick = { navController.navigate("signup") },
                 ) {
                     Text(
                         "Create new",
@@ -247,10 +251,4 @@ fun SignInPage() {
         }
     }
 
-}
-
-@Composable
-@Preview(showBackground = true, widthDp = 300, heightDp = 800)
-fun SignInPagePreview() {
-    SignInPage()
 }

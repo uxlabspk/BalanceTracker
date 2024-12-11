@@ -20,12 +20,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import io.github.uxlabspk.balancetracker.R
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
 import io.github.uxlabspk.balancetracker.views.components.PrimaryButton
 
 @Composable
-fun IntroductionPage() {
+fun IntroductionPage(
+    navController: NavController
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -48,14 +51,6 @@ fun IntroductionPage() {
         PrimaryButton(text = "Get Started", modifier = Modifier
             .padding(top = 100.dp)
             .width(215.dp)
-            .height(46.dp)) {}
+            .height(46.dp)) { navController.navigate("signin") }
     }
-}
-
-
-
-@Composable
-@Preview(showBackground = true, widthDp = 330, heightDp = 730)
-fun PreviewIntroductionPage() {
-    IntroductionPage()
 }

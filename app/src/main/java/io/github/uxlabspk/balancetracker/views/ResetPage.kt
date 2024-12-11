@@ -35,20 +35,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import io.github.uxlabspk.balancetracker.R
 import io.github.uxlabspk.balancetracker.ui.theme.Poppins_Font_Family
 import io.github.uxlabspk.balancetracker.views.components.PrimaryButton
 import io.github.uxlabspk.balancetracker.views.components.TopBar
 
 @Composable
-fun ResetPage() {
+fun ResetPage(
+    navController: NavController
+) {
     var textState by remember { mutableStateOf("") }
     Column(
         Modifier
             .background(MaterialTheme.colorScheme.background)
             .padding(top = 20.dp)
     ) {
-        TopBar(text = "Forget Password", modifier = Modifier) {}
+        TopBar(text = "Forget Password", modifier = Modifier) { navController.navigateUp() }
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -116,13 +119,7 @@ fun ResetPage() {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
                 .height(46.dp)
-            ) {}
+            ) { navController.navigate("signin") }
         }
     }
-}
-
-@Composable
-@Preview(showBackground = true, widthDp = 330, heightDp = 880)
-fun PreviewResetPage() {
-    ResetPage()
 }
